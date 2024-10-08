@@ -11,4 +11,11 @@ const validationData=async(req)=>{
         throw new Error("Please enter a strong Password!");
     }
 }
-module.exports={validationData};
+const validationProfileEdit=async(req,res)=>{
+        const Allowed_Methods=["firstName","lastName","gender","age","photoUrl"];
+        const isAlowed=Object.keys(req.body).every((field)=>{
+            Allowed_Methods.includes(field)
+        });
+        return isAlowed;
+}
+module.exports={validationData,validationProfileEdit};
