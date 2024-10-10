@@ -23,4 +23,8 @@ router.patch("/profile/edit", userAuth,async (req, res) => {
         res.status(404).send(err.message);
     }
 })
+router.patch("/profile/edit/password", userAuth,async (req, res) => {
+    const{password}=req.body;
+    
+})
 module.exports=router;

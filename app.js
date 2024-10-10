@@ -6,6 +6,7 @@ const cookieParser = require("cookie-parser");
 const auth=require("./routes/auth");
 const profile=require("./routes/profile");
 const connectionRequest=require("./routes/connectionRequest")
+const userConnectoins=require("./routes/user")
 const connectDB = async () => {
     await mongoose.connect("mongodb://localhost:27017/CODE_COMMUNITY");
 };
@@ -50,6 +51,7 @@ app.use(cookieParser())
 app.use("/",auth);
 app.use("/",profile);
 app.use("/",connectionRequest);
+app.use("/",userConnectoins);
 
 // app.get("/user",(err,req,res,next)=>{
 //     if(err){

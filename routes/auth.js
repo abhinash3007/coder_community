@@ -17,7 +17,7 @@ router.post("/signUp", async (req, res) => {
         //     gender:"male"
         // });
         await validationData(req);
-        const { firstName, lastName, email, password } = req.body;
+        const { firstName, lastName, email, password,gender,age,photoUrl } = req.body;
         const user = await User.findOne({ email });
         if (user) {
             throw new Error("User Exits");
@@ -28,6 +28,9 @@ router.post("/signUp", async (req, res) => {
             lastName,
             email,
             password: passwordHash,
+            gender,
+            age,
+            photoUrl
         })
         await newUser.save();
         res.send("succesfully user created");
