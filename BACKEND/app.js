@@ -19,9 +19,8 @@ const profile=require("./routes/profile");
 const connectionRequest=require("./routes/connectionRequest")
 const userConnectoins=require("./routes/user")
 const connectDB = async () => {
-    await mongoose.connect("mongodb://localhost:27017/CODE_COMMUNITY");
+    await mongoose.connect("mongodb+srv://abhimishrabhi2580:W0VNxID6BurDkazl@cluster0.obclh.mongodb.net/CODE_COMMUNITY");
 };
-
 connectDB()
     .then(() => {
         console.log("connected");
