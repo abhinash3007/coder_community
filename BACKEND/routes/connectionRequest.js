@@ -3,7 +3,7 @@ const router=express.Router();
 const ConnectionRequest=require("../models/ConnectionRequest");
 const { userAuth } = require("../middleware/userAuth");
 const User=require("../models/user");
-
+const sendEmail = require("../utils/sendEmail");
 router.post("/request/send/:status/:toUserId",userAuth ,async(req,res)=>{
     try{
         const fromUserId=req.user._id;
@@ -32,6 +32,8 @@ router.post("/request/send/:status/:toUserId",userAuth ,async(req,res)=>{
             status
         });
         const data=await connectionRequest.save();
+        const emailRes=await sendEmail.run("you have got a new friend request from"+req.user.firstName,`${req.user.firstName} is ${status} in ${user.firstName}`);
+        console.log(emailRes);
         res.status(200).json({
             message: `${req.user.firstName} is ${status} in ${user.firstName}`,
             data: data

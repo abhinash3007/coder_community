@@ -3,7 +3,7 @@ const app = express();
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const cors=require("cors");
-
+require("dotenv").config();
 
 app.use(cors({
     origin: "http://localhost:5173", // Change this to match your frontend URL
@@ -18,8 +18,9 @@ const auth=require("./routes/auth");
 const profile=require("./routes/profile");
 const connectionRequest=require("./routes/connectionRequest")
 const userConnectoins=require("./routes/user")
+
 const connectDB = async () => {
-    await mongoose.connect("mongodb+srv://abhimishrabhi2580:W0VNxID6BurDkazl@cluster0.obclh.mongodb.net/CODE_COMMUNITY");
+    await mongoose.connect(process.env.DB_CONNECTION_STRING);
 };
 connectDB()
     .then(() => {
