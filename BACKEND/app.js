@@ -3,8 +3,9 @@ const app = express();
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const cors=require("cors");
+const http=require("http")
 require("dotenv").config();
-
+require("./utils/cronJob");
 app.use(cors({
     origin: "http://localhost:5173", // Change this to match your frontend URL
     credentials: true,
@@ -13,12 +14,17 @@ app.use(cors({
     allowedHeaders: ["Content-Type", "Authorization"],
 }));
 app.use(express.json());
-app.use(cookieParser())
+app.use(cookieParser());
+
+
 const auth=require("./routes/auth");
 const profile=require("./routes/profile");
 const connectionRequest=require("./routes/connectionRequest")
-const userConnectoins=require("./routes/user")
+const userConnectoins=require("./routes/user");
+const initializeSocket = require("./utils/socket");
 
+const server=http.createServer(app);
+initializeSocket(server)
 const connectDB = async () => {
     await mongoose.connect(process.env.DB_CONNECTION_STRING);
 };
@@ -73,6 +79,6 @@ app.use("/",userConnectoins);
 app.get("/", (req, res) => {
     res.send("hello");
 })
-app.listen(3000, () => {
+server.listen(3000, () => {
     console.log("server is listening");
 })
