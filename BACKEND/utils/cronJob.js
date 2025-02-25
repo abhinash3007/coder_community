@@ -19,14 +19,14 @@ cron.schedule(" 0 8 * * *", async () => {
     const listOfEmails = [
       ...new Set(pendingRequest.map((req) => req.toUserId.email)),
     ];
-    console.log(listOfEmails);
+    //console.log(listOfEmails);
     for (const emails of listOfEmails) {
       try {
         const res = await sendEmail.run(
           "New Friend Requests pending for " + emails,
           "Ther eare so many frined reuests pending, please login to DevTinder.in and accept or reject the reqyests."
         );
-        console.log(res);
+       // console.log(res);
       } catch (err) {
         console.log(err);
       }

@@ -33,7 +33,7 @@ router.post("/request/send/:status/:toUserId",userAuth ,async(req,res)=>{
         });
         const data=await connectionRequest.save();
         const emailRes=await sendEmail.run("you have got a new friend request from"+req.user.firstName,`${req.user.firstName} is ${status} in ${user.firstName}`);
-        console.log(emailRes);
+       // console.log(emailRes);
         res.status(200).json({
             message: `${req.user.firstName} is ${status} in ${user.firstName}`,
             data: data

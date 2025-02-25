@@ -7,7 +7,8 @@ const messageSchema= new mongoose.Schema({
     },
     text:{
         type:String,
-        required:true
+        required:true,
+        default: Date.now 
     },
 },{timestamps:true});
 const chatSchema=new mongoose.Schema({
