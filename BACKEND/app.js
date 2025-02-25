@@ -22,6 +22,7 @@ const profile=require("./routes/profile");
 const connectionRequest=require("./routes/connectionRequest")
 const userConnectoins=require("./routes/user");
 const initializeSocket = require("./utils/socket");
+const chatRouter = require("./routes/chat");
 
 const server=http.createServer(app);
 initializeSocket(server)
@@ -68,6 +69,7 @@ app.use("/",auth);
 app.use("/",profile);
 app.use("/",connectionRequest);
 app.use("/",userConnectoins);
+app.use("/",chatRouter);
 
 // app.get("/user",(err,req,res,next)=>{
 //     if(err){
